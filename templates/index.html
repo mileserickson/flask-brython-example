@@ -7,6 +7,7 @@
 	<body onload="brython(1)">
 		<script type="text/python3">
       from browser import document, ajax
+      import json
 
       def on_complete(req):
           if req.status==200 or req.status==0:
@@ -19,8 +20,9 @@
           req = ajax.ajax()
           req.bind('complete', on_complete)
           req.open('POST', '/predict', True)
-          req.set_header('content-type','application/x-www-form-urlencoded')
-          req.send({'user_input': document['user_input'].value}) 
+          req.set_header('content-type','application/json')
+          data = json.dumps({'user_input': document['user_input'].value})
+          req.send(data)
 
       document["predict_button"].bind("click", get_prediction)
 		</script>
