@@ -1,0 +1,31 @@
+<html>
+	<head>
+		<title>Predict</title>
+		<script type="text/javascript" src="brython.js"></script>
+		<script type="text/javascript" src="brython_stdlib.js"></script>
+	</head>
+	<body onload="brython(1)">
+		<script type="text/python3">
+      from browser import document, ajax
+
+      def on_complete(req):
+          if req.status==200 or req.status==0:
+              document["result"].html = req.text
+          else:
+              document["result"].html = "error " + req.text
+
+      def get_prediction(ev):
+          """Get the predicted probability."""
+          req = ajax.ajax()
+          req.bind('complete', on_complete)
+          req.open('POST', '/predict', True)
+          req.set_header('content-type','application/x-www-form-urlencoded')
+          req.send({'user_input': document['user_input'].value}) 
+
+      document["predict_button"].bind("click", get_prediction)
+		</script>
+    <textarea id="user_input"></textarea>
+		<button id="predict_button">Predict!</button>
+		<div id="result"></div>
+	</body>
+</html>
