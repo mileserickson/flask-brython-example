@@ -1,11 +1,11 @@
 <html>
-	<head>
-		<title>Predict</title>
-		<script type="text/javascript" src="brython.js"></script>
-		<script type="text/javascript" src="brython_stdlib.js"></script>
-	</head>
-	<body onload="brython(1)">
-		<script type="text/python3">
+  <head>
+    <title>Predict</title>
+    <script type="text/javascript" src="brython.js"></script>
+    <script type="text/javascript" src="brython_stdlib.js"></script>
+  </head>
+  <body onload="brython(1)">
+    <script type="text/python3">
       from browser import document, ajax
       import json
       import warnings
@@ -26,9 +26,9 @@
           req.send(data)
 
       document["predict_button"].bind("click", get_prediction)
-		</script>
+    </script>
     <textarea id="user_input"></textarea>
-		<button id="predict_button">Predict!</button>
-		<div id="result"></div>
-	</body>
+    <button id="predict_button">Predict!</button>
+    <div id="result"></div>
+  </body>
 </html>
