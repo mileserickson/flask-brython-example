@@ -27,6 +27,9 @@
 
       document["predict_button"].bind("click", get_prediction)
     </script>
+    {% for word in words %}
+    <h1>{{word}}</h1>
+    {% endfor %}
     <textarea id="user_input"></textarea>
     <button id="predict_button">Predict!</button>
     <div id="result"></div>
